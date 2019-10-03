@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: leadleast
+  password:
+  port: 5432
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: leadleast_development
+
+test:
+  <<: *default
+  database: leadleast_test
+
+production:
+  <<: *default
+  database: leadleast_production
+  username: leadleast
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
