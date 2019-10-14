@@ -48,7 +48,7 @@ $ docker-compose run api bundle exec rails db:create
 $ docker-compose run api bundle exec rails db:migrate
 ```
 
-１分前後待った後、ブラウザで`localhost:8000`にアクセスできたらOK!
+１分前後待った後、ブラウザで`localhost:5000`にアクセスできたらOK!
 
 ## 使い方
 
