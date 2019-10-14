@@ -1,24 +1,65 @@
-# README
+# LeadLeast
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## エレベーターピッチ
 
-Things you may want to cover:
+オンラインでアジャイルなプロダクトデザインしたい，  
+教育関係者（生徒，教員）向けの,  
+アジャイルなプロダクトデザイン支援を実現する，  
+LeadLeastというサービスです．  
+これは，オンラインでリーンキャンパスやユーザーストーリマップが共同編集ができ，  
+Googleスプレッドシートやオンラインホワイトボードとは違い，  
+フォーマットが統一でき，初学者でも一連の流れを体系的にデザインできる.  
 
-* Ruby version
+## リポジトリ
 
-* System dependencies
+- [フロントエンド](https://github.com/umahara555/enpit2019_er_leadleast_front)
+- [バックエンド](https://github.com/umahara555/enpit2019_er_leadleast_api)
 
-* Configuration
+## セットアップ
 
-* Database creation
+#### GitHubから取ってくる
 
-* Database initialization
+```
+$ git clone https://github.com/umahara555/enpit2019_er_leadleast.git
+$ cd enpit2019_er_leadleast_api
+$ cp .env.sample .env
+```
 
-* How to run the test suite
+#### ビルド
+```
+$ docker-compose build
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+#### 起動
+```
+$ docker-compose up -d
+```
 
-* Deployment instructions
+#### DBへ設定
+```
+$ docker-compose exec db /bin/bash
+$ psql -U postgres -c "CREATE ROLE leadleast WITH LOGIN PASSWORD '' CREATEDB;"
+$ exit
+```
 
-* ...
+#### データベースの作成とマイグレーション
+```
+$ docker-compose run api bundle exec rails db:create
+$ docker-compose run api bundle exec rails db:migrate
+```
+
+１分前後待った後、ブラウザで`localhost:8000`にアクセスできたらOK!
+
+## 使い方
+
+```
+# ライブラリ等の追加や更新があった時
+$ docker-compose build
+
+# 起動
+$ docker-compose up -d
+
+# 終了
+docker-compose down
+```
+
