@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       get '/hello', to: 'hello#hello'
+      get '/board', to: 'board#index'
     end
   end
 end
