@@ -1,0 +1,3 @@
+class HandCard < ApplicationRecord
+    
+end

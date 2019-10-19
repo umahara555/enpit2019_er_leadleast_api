@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       get '/hello', to: 'hello#hello'
       get '/board', to: 'board#index'
+      get '/handcards', to:'board#card_data'
     end
   end
 end
