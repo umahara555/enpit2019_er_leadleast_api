@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get '/hello', to: 'hello#hello'
       get '/board', to: 'board#index'
       get '/handcards', to:'board#card_data'
+      post '/handcards', to:'board#new'
     end
   end
 end
