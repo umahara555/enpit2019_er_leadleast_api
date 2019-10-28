@@ -31,6 +31,9 @@ module Api
           id_data = params[:id].to_i
         end
         if HandCard.find(id_data).destroy
+          hand_cards = HandCard.all
+          data = { status: 'SUCCESS', card_data: hand_cards}
+          SyncBoardJob.perform_later(data.to_json)
           render json: { status: 'SUCCESS'}
         else
           render json: { status: 'FAILED' }
