@@ -20,6 +20,17 @@ module Api
         end
       end
 
+      def delete_data
+        unless params[:id].blank?
+          id_data = params[:id].to_i
+        end
+        if HandCard.find(id_data).destroy
+          render json: { status: 'SUCCESS'}
+        else
+          render json: { status: 'FAILED' }
+        end
+      end
+
       private
         def card_params
           params.require(:board).permit(:text)
