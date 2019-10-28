@@ -7,15 +7,18 @@ module Api
       end
 
       def card_data
-        data = HandCard.all
-        SyncBoardJob.perform_later(data)
-        render json: { status: 'SUCCESS', card_data: data}
+        hand_cards = HandCard.all
+        data = { status: 'SUCCESS', card_data: hand_cards}
+        # SyncBoardJob.perform_later(data.to_json)
+        render json: data
       end
 
       def new
-        data = HandCard.new(card_params)
-        if data.save
-          SyncBoardJob.perform_later(data)
+        hand_card = HandCard.new(card_params)
+        if hand_card.save
+          hand_cards = HandCard.all
+          data = { status: 'SUCCESS', card_data: hand_cards}
+          SyncBoardJob.perform_later(data.to_json)
           render json: { status: 'SUCCESS'}
         else
           render json: { status: 'FAILED' }
