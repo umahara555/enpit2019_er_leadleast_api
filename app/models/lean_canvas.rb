@@ -1,0 +1,2 @@
+class LeanCanvas < ApplicationRecord
+end
