@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     namespace 'v1' do
       get '/hello', to: 'hello#hello'
       get '/board', to: 'board#index'
-      get '/handcards', to:'board#card_data'
-      post '/handcards', to:'board#new'
-      delete '/handcards' , to:'board#delete_data'
+      get '/boardcards', to:'board#card_data'
+      post '/boardcards', to:'board#new'
+      delete '/boardcards' , to:'board#delete_data'
     end
   end
 end
