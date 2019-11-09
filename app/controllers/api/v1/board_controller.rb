@@ -7,17 +7,17 @@ module Api
       end
 
       def card_data
-        hand_cards = HandCard.all
-        data = { status: 'SUCCESS', card_data: hand_cards}
+        board_cards = BoardCard.all
+        data = { status: 'SUCCESS', card_data: board_cards}
         # SyncBoardJob.perform_later(data.to_json)
         render json: data
       end
 
       def new
-        hand_card = HandCard.new(card_params)
-        if hand_card.save
-          hand_cards = HandCard.all
-          data = { status: 'SUCCESS', card_data: hand_cards}
+        board_card = BoardCard.new(card_params)
+        if board_card.save
+          board_cards = BoardCard.all
+          data = { status: 'SUCCESS', card_data: board_cards}
           SyncBoardJob.perform_later(data.to_json)
           render json: { status: 'SUCCESS'}
         else
@@ -30,9 +30,9 @@ module Api
         unless params[:id].blank?
           id_data = params[:id].to_i
         end
-        if HandCard.find(id_data).destroy
-          hand_cards = HandCard.all
-          data = { status: 'SUCCESS', card_data: hand_cards}
+        if BoardCard.find(id_data).destroy
+          board_cards = BoardCard.all
+          data = { status: 'SUCCESS', card_data: board_cards}
           SyncBoardJob.perform_later(data.to_json)
           render json: { status: 'SUCCESS'}
         else
