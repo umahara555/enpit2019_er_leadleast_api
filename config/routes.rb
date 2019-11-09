@@ -6,7 +6,8 @@ Rails.application.routes.draw do
       get '/board', to: 'board#index'
       get '/boardcards', to:'board#card_data'
       post '/boardcards', to:'board#new'
-      delete '/boardcards' , to:'board#delete_data'
+      delete '/boardcards', to:'board#delete_data'
+      post '/products', to:'products#create'
     end
   end
 end
