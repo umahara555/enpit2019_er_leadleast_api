@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       delete '/boardcards', to:'board#delete_data'
       get '/products', to:'products#index'
       post '/products', to:'products#create'
+      get '/leancanvas', to:'leancanvas#index'
+      post '/leancanvas', to:'leancanvas#create'
     end
   end
 end
