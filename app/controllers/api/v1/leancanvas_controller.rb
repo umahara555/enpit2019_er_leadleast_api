@@ -6,6 +6,15 @@ module Api
         render json: { status: 'SUCCESS', leancanvasies: LeanCanvas.all }
       end
 
+      def show
+        leancanvas = LeanCanvas.find_by(product_id: params[:product_id])
+        if leancanvas.present?
+          render json: { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
+        else
+          render json: { status: 'FAILED' }
+        end
+      end
+
       def create
         if LeanCanvas.find_by(product_id: params[:product_id]).blank?
           leancanvas = LeanCanvas.new(board_texts: text_params)
