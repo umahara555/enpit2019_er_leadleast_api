@@ -19,6 +19,20 @@ module Api
         if LeanCanvas.find_by(product_id: params[:product_id]).blank?
           leancanvas = LeanCanvas.new()
           leancanvas.product_id = params[:product_id]
+          leancanvas.board_texts = {
+              txt1: { text: '' },
+              txt2: { text: '' },
+              txt3: { text: '' },
+              txt4: { text: '' },
+              txt5: { text: '' },
+              txt6: { text: '' },
+              txt7: { text: '' },
+              txt8: { text: '' },
+              txt9: { text: '' },
+              txt10: { text: '' },
+              txt11: { text: '' },
+              txt12: { text: '' },
+          }
           if leancanvas.save
             render json: { status: 'SUCCESS', product_id: leancanvas.product_id }
           else
