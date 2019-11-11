@@ -5,10 +5,9 @@ module Api
         render json: { status: 'SUCCESS', products: Product.all }
       end
       def create
-        product_id = SecureRandom.alphanumeric(8)
-        product = Product.new(product_id: product_id)
+        product = Product.new()
         if product.save
-          render json: { status: 'SUCCESS', product_id: product.product_id }
+          render json: { status: 'SUCCESS', product_id: product.id }
         else          
           render json: { status: 'FAILED' }
         end 
