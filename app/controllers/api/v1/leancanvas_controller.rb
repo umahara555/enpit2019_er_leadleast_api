@@ -17,10 +17,10 @@ module Api
 
       def create
         if LeanCanvas.find_by(product_id: params[:product_id]).blank?
-          leancanvas = LeanCanvas.new(board_texts: text_params)
+          leancanvas = LeanCanvas.new()
           leancanvas.product_id = params[:product_id]
           if leancanvas.save
-            render json: { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
+            render json: { status: 'SUCCESS', product_id: leancanvas.product_id }
           else
             render json: { status: 'FAILED' }
           end
