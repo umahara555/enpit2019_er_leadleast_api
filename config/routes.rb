@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get '/products', to:'products#index'
       post '/products', to:'products#create'
       get '/leancanvas', to:'leancanvas#index'
-      post '/leancanvas', to:'leancanvas#create'
+      post '/leancanvas/:product_id', to:'leancanvas#create'
     end
   end
 end
