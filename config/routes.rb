@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post '/products', to:'products#create'
       get '/leancanvas', to:'leancanvas#index'
       post '/leancanvas/:product_id', to:'leancanvas#create'
+      patch '/leancanvas/:product_id', to:'leancanvas#update'
     end
   end
 end

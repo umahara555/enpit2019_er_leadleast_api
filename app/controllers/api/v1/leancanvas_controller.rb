@@ -19,6 +19,11 @@ module Api
           render json: { status: 'FAILED' }
         end
       end
+
+      def update
+        leancanvas = LeanCanvas.find_by(product_id: params[:product_id])
+        if leancanvas.update_attributes(board_texts: text_params)
+          render json: { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
         else
           render json: { status: 'FAILED' }
         end
@@ -27,9 +32,7 @@ module Api
       # パラメータを取得する
       private
         def text_params
-          params.require(:leancanvas).permit(
-            :product_id, 
-            board_texts: [
+          params.require(:board_texts).permit(
               txt1: [:text ],
               txt2: [:text ],
               txt3: [:text ],
@@ -42,7 +45,6 @@ module Api
               txt10: [:text ],
               txt11: [:text ],
               txt12: [:text ]
-            ]
           )
         end
     end
