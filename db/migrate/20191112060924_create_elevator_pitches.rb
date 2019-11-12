@@ -1,7 +1,7 @@
 class CreateElevatorPitches < ActiveRecord::Migration[5.2]
   def change
     create_table :elevator_pitches do |t|
-      t.string :board_texts
+      t.json :board_texts
 
       t.timestamps
     end

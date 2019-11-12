@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_060924) do
   end
 
   create_table "elevator_pitches", force: :cascade do |t|
-    t.string "board_texts"
+    t.json "board_texts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "product_id"
