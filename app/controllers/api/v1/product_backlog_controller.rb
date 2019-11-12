@@ -1,25 +1,25 @@
 module Api
   module V1
-    class LeancanvasController < ApplicationController
+    class ProductBacklogController < ApplicationController
       # 一覧を取得
       def index
-        render json: { status: 'SUCCESS', user_story_maps: UserStoryMap.all }
+        render json: { status: 'SUCCESS', product_backlogs: ProductBacklog.all }
       end
 
       def show
-        user_story_map = UserStoryMap.find_by(product_id: params[:product_id])
-        if user_story_map.present?
-          render json: { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
+        product_backlog = ProductBacklog.find_by(product_id: params[:product_id])
+        if product_backlog.present?
+          render json: { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
         else
           render json: { status: 'FAILED' }
         end
       end
 
       def create
-        if UserStoryMap.find_by(product_id: params[:product_id]).blank?
-          user_story_map = UserStoryMap.new()
-          user_story_map.product_id = params[:product_id]
-          user_story_map.board_texts = {
+        if ProductBacklog.find_by(product_id: params[:product_id]).blank?
+          product_backlog = ProductBacklog.new()
+          product_backlog.product_id = params[:product_id]
+          product_backlog.board_texts = {
               txt1: { text: '' },
               txt2: { text: '' },
               txt3: { text: '' },
@@ -29,8 +29,8 @@ module Api
               txt7: { text: '' },
               txt8: { text: '' },
           }
-          if user_story_map.save
-            render json: { status: 'SUCCESS', product_id: user_story_map.product_id }
+          if product_backlog.save
+            render json: { status: 'SUCCESS', product_id: product_backlog.product_id }
           else
             render json: { status: 'FAILED' }
           end
@@ -40,9 +40,9 @@ module Api
       end
 
       def update
-        user_story_map = UserStoryMap.find_by(product_id: params[:product_id])
-        if user_story_map.update_attributes(board_texts: text_params)
-          render json: { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
+        product_backlog = ProductBacklog.find_by(product_id: params[:product_id])
+        if product_backlog.update_attributes(board_texts: text_params)
+          render json: { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
         else
           render json: { status: 'FAILED' }
         end
