@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_060924) do
+ActiveRecord::Schema.define(version: 2019_11_12_064056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2019_11_12_060924) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_story_maps", force: :cascade do |t|
+    t.json "board_texts"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "product_id"
+    t.index ["product_id"], name: "index_user_story_maps_on_product_id"
+  end
+
   add_foreign_key "elevator_pitches", "products"
   add_foreign_key "lean_canvases", "products"
+  add_foreign_key "user_story_maps", "products"
 end
