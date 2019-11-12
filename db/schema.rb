@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_075901) do
+ActiveRecord::Schema.define(version: 2019_11_12_060924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "board_cards", force: :cascade do |t|
     t.string "text"
+  end
+
+  create_table "elevator_pitches", force: :cascade do |t|
+    t.string "board_texts"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "product_id"
+    t.index ["product_id"], name: "index_elevator_pitches_on_product_id"
   end
 
   create_table "lean_canvases", force: :cascade do |t|
@@ -32,5 +40,6 @@ ActiveRecord::Schema.define(version: 2019_11_11_075901) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "elevator_pitches", "products"
   add_foreign_key "lean_canvases", "products"
 end

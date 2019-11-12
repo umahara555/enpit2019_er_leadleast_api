@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  board_texts: MyString
+  product: one
+
+two:
+  board_texts: MyString
+  product: two
