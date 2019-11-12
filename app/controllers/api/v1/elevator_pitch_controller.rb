@@ -3,7 +3,7 @@ module Api
     class ElevatorPitchController < ApplicationController
       # 一覧を取得
       def index
-        render json: { status: 'SUCCESS', elevator_pitchies: ElevatorPitch.all }
+        render json: { status: 'SUCCESS', elevator_pitches: ElevatorPitch.all }
       end
 
       def show
