@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_064056) do
+ActiveRecord::Schema.define(version: 2019_11_12_064942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2019_11_12_064056) do
     t.index ["product_id"], name: "index_lean_canvases_on_product_id"
   end
 
+  create_table "product_backlogs", force: :cascade do |t|
+    t.json "board_texts"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "product_id"
+    t.index ["product_id"], name: "index_product_backlogs_on_product_id"
+  end
+
   create_table "products", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,5 +58,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_064056) do
 
   add_foreign_key "elevator_pitches", "products"
   add_foreign_key "lean_canvases", "products"
+  add_foreign_key "product_backlogs", "products"
   add_foreign_key "user_story_maps", "products"
 end
