@@ -10,7 +10,7 @@ module Api
         user_story_map = UserStoryMap.find_by(product_id: params[:product_id])
         if user_story_map.present?
           data = { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
-          SyncUserStoryMapJob.perform_later(data.to_json)
+          # SyncUserStoryMapJob.perform_later(data.to_json)
           render json: data
         else
           render json: { status: 'FAILED' }
