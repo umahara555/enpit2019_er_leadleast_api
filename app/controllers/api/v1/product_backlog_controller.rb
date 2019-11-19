@@ -9,7 +9,9 @@ module Api
       def show
         product_backlog = ProductBacklog.find_by(product_id: params[:product_id])
         if product_backlog.present?
-          render json: { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
+          data = { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
+          SyncProductBacklogJob.perform_later(data.to_json)
+          render json: data
         else
           render json: { status: 'FAILED' }
         end
@@ -42,7 +44,9 @@ module Api
       def update
         product_backlog = ProductBacklog.find_by(product_id: params[:product_id])
         if product_backlog.update_attributes(board_texts: text_params)
-          render json: { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
+          data = { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
+          SyncProductBacklogJob.perform_later(data.to_json)
+          render json: data
         else
           render json: { status: 'FAILED' }
         end

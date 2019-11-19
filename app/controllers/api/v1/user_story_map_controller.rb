@@ -9,7 +9,9 @@ module Api
       def show
         user_story_map = UserStoryMap.find_by(product_id: params[:product_id])
         if user_story_map.present?
-          render json: { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
+          data = { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
+          SyncUserStoryMapJob.perform_later(data.to_json)
+          render json: data
         else
           render json: { status: 'FAILED' }
         end
@@ -98,7 +100,9 @@ module Api
       def update
         user_story_map = UserStoryMap.find_by(product_id: params[:product_id])
         if user_story_map.update_attributes(board_texts: text_params)
-          render json: { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
+          data = { status: 'SUCCESS', product_id: user_story_map.product_id , board_texts: user_story_map.board_texts }
+          SyncUserStoryMapJob.perform_later(data.to_json)
+          render json: data
         else
           render json: { status: 'FAILED' }
         end

@@ -9,7 +9,9 @@ module Api
       def show
         leancanvas = LeanCanvas.find_by(product_id: params[:product_id])
         if leancanvas.present?
-          render json: { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
+          data = { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
+          SyncLeanCanvasJob.perform_later(data.to_json)
+          render json: data
         else
           render json: { status: 'FAILED' }
         end
@@ -46,7 +48,9 @@ module Api
       def update
         leancanvas = LeanCanvas.find_by(product_id: params[:product_id])
         if leancanvas.update_attributes(board_texts: text_params)
-          render json: { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
+          data = { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
+          SyncLeanCanvasJob.perform_later(data.to_json)
+          render json: data
         else
           render json: { status: 'FAILED' }
         end
