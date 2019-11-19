@@ -10,7 +10,7 @@ module Api
         product_backlog = ProductBacklog.find_by(product_id: params[:product_id])
         if product_backlog.present?
           data = { status: 'SUCCESS', product_id: product_backlog.product_id , board_texts: product_backlog.board_texts }
-          SyncProductBacklogJob.perform_later(data.to_json)
+          # SyncProductBacklogJob.perform_later(data.to_json)
           render json: data
         else
           render json: { status: 'FAILED' }
