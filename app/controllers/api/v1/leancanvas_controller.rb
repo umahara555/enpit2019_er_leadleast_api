@@ -49,7 +49,7 @@ module Api
         leancanvas = LeanCanvas.find_by(product_id: params[:product_id])
         if leancanvas.update_attributes(board_texts: text_params)
           data = { status: 'SUCCESS', product_id: leancanvas.product_id , board_texts: leancanvas.board_texts }
-          SyncLeanCanvasJob.perform_later(data.to_json)
+          SyncLeanCanvasJob.perform_later(leancanvas.product_id, data.to_json)
           render json: data
         else
           render json: { status: 'FAILED' }

@@ -51,5 +51,9 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_cable.allowed_request_origins = ["https://blooming-sierra-09361.herokuapp.com", "https://limitless-hamlet-40926.herokuapp.com"]
+  config.action_cable.allowed_request_origins = [
+      "https://blooming-sierra-09361.herokuapp.com",
+      "https://limitless-hamlet-40926.herokuapp.com",
+      "http://localhost:3000"
+  ]
 end
