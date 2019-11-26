@@ -54,6 +54,7 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
       "https://blooming-sierra-09361.herokuapp.com",
       "https://limitless-hamlet-40926.herokuapp.com",
+      "https://intense-reef-93514.herokuapp.com",
       "http://localhost:3000"
   ]
 end
