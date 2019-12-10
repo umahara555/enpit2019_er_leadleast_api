@@ -30,6 +30,16 @@ module Api
               txt6: { text: '' },
               txt7: { text: '' },
               txt8: { text: '' },
+              txt9: { text: '' },
+              txt10: { text: '' },
+              txt11: { text: '' },
+              txt12: { text: '' },
+              txt13: { text: '' },
+              txt14: { text: '' },
+              txt15: { text: '' },
+              txt16: { text: '' },
+              txt17: { text: '' },
+              txt18: { text: '' },              
           }
           if product_backlog.save
             render json: { status: 'SUCCESS', product_id: product_backlog.product_id }
@@ -64,6 +74,16 @@ module Api
               txt6: [:text ],
               txt7: [:text ],
               txt8: [:text ],
+              txt9: [:text ],
+              txt10: [:text ],
+              txt11: [:text ],
+              txt12: [:text ],
+              txt13: [:text ],
+              txt14: [:text ],
+              txt15: [:text ],
+              txt16: [:text ],
+              txt17: [:text ],
+              txt18: [:text ],              
           )
         end
     end
